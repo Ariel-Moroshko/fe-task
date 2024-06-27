@@ -14,7 +14,7 @@ function PokemonList() {
     <div className="flex flex-1 justify-center p-4">
       {/* Implement the PokemonList view. Use the PokemonCard component to show each Pokemon in the list */}
       {/* {data.results.map(pokemon => <PokemonCa)} */}
-      <div className="grid w-full max-w-screen-2xl grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+      <div className="grid h-fit w-full max-w-screen-2xl grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {list?.map(({ data }) => {
           const { id, name, sprites, types, weight, height, abilities } = data;
           return (
