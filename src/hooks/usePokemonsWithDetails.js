@@ -18,7 +18,7 @@ function usePokemonsWithDetails(page) {
         staleTime: Infinity,
       })) ?? [],
   });
-  return pokemonsWithDetails;
+  return { pokemonsList, pokemonsWithDetails };
 }
 
 export default usePokemonsWithDetails;

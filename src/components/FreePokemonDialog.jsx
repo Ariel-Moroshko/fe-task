@@ -31,7 +31,7 @@ export function FreePokemonDialog({ pokemonName }) {
           <X />
         </button>
       </AlertDialogTrigger>
-      <AlertDialogContent className="border-slate-800 bg-slate-950 text-slate-200">
+      <AlertDialogContent className="border-slate-800 bg-slate-900 text-slate-200">
         <AlertDialogHeader>
           <AlertDialogTitle>Release Pokemon</AlertDialogTitle>
           <AlertDialogDescription className="text-lg text-slate-300">

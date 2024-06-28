@@ -12,7 +12,6 @@ function CatchButton({ pokemon }) {
   const handleCatchClick = async () => {
     setIsPending(true);
     const result = await addFavorite(pokemon);
-    console.log(result);
     if (result) {
       setFavorites([...favorites, pokemon]);
     } else {
@@ -37,15 +36,19 @@ function CatchButton({ pokemon }) {
     <div className="group relative mt-8">
       <button
         onClick={() => handleCatchClick()}
-        className={twMerge(
-          `animate-shimmer inline-flex h-12 min-w-44 items-center justify-center gap-3 rounded-md border border-violet-600 bg-[linear-gradient(110deg,#000103,45%,#1f2b3d,55%,#000103)] bg-[length:200%_100%] px-6 font-medium text-slate-400 transition-colors focus:outline-none focus:ring-1 focus:ring-slate-400 focus:ring-offset-1 focus:ring-offset-slate-300`,
-        )}
         disabled={isPending}
+        className={twMerge(
+          "group/catch relative inline-flex items-center justify-center overflow-hidden rounded-md p-0.5 font-bold",
+          isPending && "opacity-40",
+        )}
       >
-        <LoaderCircle
-          className={`animate-spin ${!isPending ? "hidden" : ""}`}
-        />
-        <div>{isPending ? "Catching..." : "Catch"}</div>
+        <span className="absolute h-full w-full bg-gradient-to-br from-[#eacd57] via-[#ff1c1c] to-[#f50bca] transition-all duration-500 ease-out group-hover/catch:opacity-100"></span>
+        <span className="relative inline-flex h-12 min-w-44 items-center justify-center gap-3 rounded-md bg-slate-900 transition-all duration-300 hover:bg-slate-950">
+          <LoaderCircle
+            className={`animate-spin ${!isPending ? "hidden" : ""}`}
+          />
+          <span className="">{isPending ? "Catching..." : "Catch"}</span>
+        </span>
       </button>
     </div>
   );
