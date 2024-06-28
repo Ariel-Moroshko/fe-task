@@ -9,7 +9,7 @@ function Pagination({ hasNextPage }) {
     <div className="flex items-center gap-4">
       <Button
         onClick={() => setSearchParams({ page: page - 1 })}
-        className="flex min-w-24 items-center gap-2 bg-slate-800 hover:bg-slate-600"
+        className="flex min-w-32 items-center gap-2 bg-slate-800 hover:bg-slate-600"
         disabled={page === 1}
       >
         <ChevronLeft size={18} />
@@ -18,7 +18,7 @@ function Pagination({ hasNextPage }) {
       <div>{page}</div>
       <Button
         onClick={() => setSearchParams({ page: page + 1 })}
-        className="flex min-w-24 items-center gap-2 bg-slate-800 hover:bg-slate-600"
+        className="flex min-w-32 items-center gap-2 bg-slate-800 hover:bg-slate-600"
         disabled={hasNextPage}
       >
         Next

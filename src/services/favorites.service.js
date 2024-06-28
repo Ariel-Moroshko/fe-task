@@ -6,7 +6,7 @@ export async function addFavorite(pokemon) {
   // Add the pokemon to the favorites list
   return new Promise((resolve) => {
     setTimeout(() => {
-      if (Math.random() < 0.3) {
+      if (Math.random() < 0.4) {
         const favorites = getFavorites();
         localStorage.setItem(
           "favorites",

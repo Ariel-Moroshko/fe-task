@@ -29,7 +29,7 @@ export function MobileSheet() {
           <SheetTitle></SheetTitle>
           <SheetDescription></SheetDescription>
         </SheetHeader>
-        <div className="basis-60 flex-col items-center bg-slate-900 py-4 text-xl">
+        <div className="flex flex-col items-center gap-4 bg-slate-900 px-4 py-4 text-xl">
           <FavoritesSideBar />
         </div>
       </SheetContent>

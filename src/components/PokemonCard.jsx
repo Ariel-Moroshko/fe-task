@@ -8,7 +8,7 @@ function PokemonCard({ pokemon, variant }) {
       style={{ "--card-bg-image-url": `url(${cardBackground})` }}
       className={twMerge(
         `group flex flex-col items-center justify-center gap-6 rounded-xl border-2 border-slate-800 bg-[image:var(--card-bg-image-url)] bg-cover px-2 py-6 transition-all duration-300 ease-in-out hover:border-slate-500`,
-        variant === "small" && "w-40",
+        variant === "small" && "w-52",
       )}
     >
       <div className={twMerge(`h-32`, variant === "small" && "h-16")}>
