@@ -23,13 +23,13 @@ export function MobileSheet() {
       </SheetTrigger>
       <SheetContent
         side="left"
-        className="overflow-y-scroll border-r-0 bg-slate-900 text-slate-100"
+        className="overflow-y-scroll border-r-0 bg-slate-900 px-2 text-slate-100"
       >
         <SheetHeader>
           <SheetTitle></SheetTitle>
           <SheetDescription></SheetDescription>
         </SheetHeader>
-        <div className="flex flex-col items-center gap-4 bg-slate-900 px-4 py-4 text-xl">
+        <div className="flex flex-col items-center gap-4 bg-slate-900 py-4 text-xl">
           <FavoritesSideBar />
         </div>
       </SheetContent>

@@ -16,11 +16,26 @@ function PokemonList() {
 
   return (
     <div className="flex-1 flex-col items-center justify-center p-4">
-      <div className="flex flex-col items-center gap-6">
-        {/* Implement the PokemonList view. Use the PokemonCard component to show each Pokemon in the list */}
-        <Pagination
-          hasNextPage={pokemonsList.data && pokemonsList.data.next === null}
-        />
+      <div className="flex w-full flex-col items-center gap-6">
+        <div className="flex w-full max-w-screen-2xl flex-col items-center justify-between gap-4 px-2 xl:flex-row">
+          <div className="flex flex-col gap-4 text-sm md:flex-row md:gap-8">
+            <div className="flex items-center gap-2">
+              <div className="h-3 w-3 rounded-full bg-emerald-400"></div>
+              <div>Pokemon caught</div>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="h-3 w-3 rounded-full bg-blue-400"></div>
+              <div>Attempts available</div>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="h-3 w-3 rounded-full bg-slate-700"></div>
+              <div>No attempts left</div>
+            </div>
+          </div>
+          <Pagination
+            hasNextPage={pokemonsList.data && pokemonsList.data.next === null}
+          />
+        </div>
 
         <div className="grid h-fit w-full max-w-screen-2xl grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {areAnyPending ? (

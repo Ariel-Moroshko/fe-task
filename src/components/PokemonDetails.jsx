@@ -10,14 +10,13 @@ import useCatchAttemptsContext from "@/hooks/useCatchAttemptsContext";
 
 function PokemonDetails() {
   const { favorites, isFavoritesLoading } = useFavoritesContext();
-  const { MAX_CATCH_ATTEMPTS, catchAttempts, isCatchAttemptsLoading } =
+  const { getPokemonCatchAttemptsLeft, isCatchAttemptsLoading } =
     useCatchAttemptsContext();
   const { name: pokemonName } = useParams();
   const { state } = useLocation();
   const pokemon = usePokemon(pokemonName);
   const previousPageVisited = state?.page ?? 1;
-  const catchAttemptsLeft =
-    MAX_CATCH_ATTEMPTS - (catchAttempts.get(pokemonName) ?? 0);
+  const catchAttemptsLeft = getPokemonCatchAttemptsLeft(pokemonName);
 
   if (pokemon.isPending || isFavoritesLoading || isCatchAttemptsLoading) {
     return <div className="flex flex-1 justify-center p-4">loading...</div>;

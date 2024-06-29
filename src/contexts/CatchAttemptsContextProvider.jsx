@@ -24,6 +24,10 @@ function CatchAttemptsContextProvider({ children }) {
     });
   };
 
+  const getPokemonCatchAttemptsLeft = (pokemonName) => {
+    return MAX_CATCH_ATTEMPTS - (catchAttempts.get(pokemonName) ?? 0);
+  };
+
   useEffect(() => {
     const loadCatchAttempts = async () => {
       const catchAttemptsFromLocalStorage = await getCatchAttempts();
@@ -36,10 +40,9 @@ function CatchAttemptsContextProvider({ children }) {
   return (
     <catchAttemptsContext.Provider
       value={{
-        MAX_CATCH_ATTEMPTS,
-        catchAttempts,
         addCatchAttempt,
         resetCatchAttempts,
+        getPokemonCatchAttemptsLeft,
         isCatchAttemptsLoading,
       }}
     >

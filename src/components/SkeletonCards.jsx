@@ -10,6 +10,7 @@ function SkeletonCards() {
           style={{ "--card-bg-image-url": `url(${cardBackground})` }}
           className="group flex flex-col items-center justify-center gap-6 rounded-xl border-2 border-slate-800 bg-[image:var(--card-bg-image-url)] bg-cover px-2 py-6 transition-all duration-300 ease-in-out hover:border-slate-500"
         >
+          <div className="h-4 w-4 animate-pulse rounded-full bg-slate-700"></div>
           <div className="h-32">
             <div className="relative p-2">
               <div className="absolute inset-0 animate-pulse rounded-full bg-gradient-to-b from-slate-700 to-slate-900"></div>
