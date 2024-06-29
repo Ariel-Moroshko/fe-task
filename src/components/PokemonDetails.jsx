@@ -18,9 +18,18 @@ function PokemonDetails() {
   const previousPageVisited = state?.page ?? 1;
   const catchAttemptsLeft = getPokemonCatchAttemptsLeft(pokemonName);
 
+  console.log(pokemon.error);
   if (pokemon.isPending || isFavoritesLoading || isCatchAttemptsLoading) {
     return <div className="flex flex-1 justify-center p-4">loading...</div>;
   }
+  if (pokemon.isError) {
+    return (
+      <div className="flex flex-1 justify-center p-4">
+        Something went wrong.
+      </div>
+    );
+  }
+
   const { id, name, sprites, types, weight, height, abilities } = pokemon.data;
   const isCaught = favorites.some((p) => p.name === pokemonName);
 
