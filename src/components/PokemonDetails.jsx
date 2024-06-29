@@ -6,6 +6,7 @@ import { ArrowLeft, CircleCheck } from "lucide-react";
 import { twMerge } from "tailwind-merge";
 import { isFavorite } from "@/services/favorites.service";
 import cardBackground from "../assets/card_background.svg";
+import AnimatedPokemonImage from "./AnimatedPokemonImage";
 
 function PokemonDetails() {
   const { favorites } = useFavoritesContext();
@@ -47,14 +48,7 @@ function PokemonDetails() {
           </>
         )}
         <div className="font-bold text-slate-500">#{id}</div>
-        <div className="relative p-2">
-          <div className="absolute inset-0 rounded-full bg-gradient-to-b from-slate-200 to-slate-800 opacity-30"></div>
-          {sprites[0] ? (
-            <img src={sprites[0]} className="relative h-[96px] w-[96px]" />
-          ) : (
-            <div className="h-[96px] w-[96px]"></div>
-          )}
-        </div>
+        <AnimatedPokemonImage sprites={sprites} />
         <div className="text-4xl font-bold">{name}</div>
         <div className="flex w-full justify-around">
           <div className="flex flex-col items-center">
