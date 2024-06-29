@@ -4,22 +4,22 @@ import CatchButton from "./CatchButton";
 import useFavoritesContext from "@/hooks/useFavoritesContext";
 import { ArrowLeft, CircleCheck } from "lucide-react";
 import { twMerge } from "tailwind-merge";
-import { isFavorite } from "@/services/favorites.service";
 import cardBackground from "../assets/card_background.svg";
 import AnimatedPokemonImage from "./AnimatedPokemonImage";
 
 function PokemonDetails() {
-  const { favorites } = useFavoritesContext();
+  const { favorites, isFavoritesLoading } = useFavoritesContext();
   const { name: pokemonName } = useParams();
   const { state } = useLocation();
   const pokemon = usePokemon(pokemonName);
   const previousPageVisited = state?.page ?? 1;
 
-  if (pokemon.isPending) {
+  if (pokemon.isPending || isFavoritesLoading) {
     return <div className="flex flex-1 justify-center p-4">loading...</div>;
   }
   const { id, name, sprites, types, weight, height, abilities } = pokemon.data;
-  const isCaught = isFavorite(name);
+  const isCaught = favorites.some((p) => p.name === pokemonName);
+
   return (
     <div className="flex-1 p-4">
       <div className="flex">

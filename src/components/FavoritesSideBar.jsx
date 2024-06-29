@@ -10,7 +10,7 @@ import { Button } from "./ui/button";
 import { twMerge } from "tailwind-merge";
 
 function FavoritesSideBar() {
-  const { favorites } = useFavoritesContext();
+  const { favorites, isFavoritesLoading } = useFavoritesContext();
   const [searchText, setSearchText] = useState("");
   const [selectedType, setSelectedType] = useState("");
   const [filtered, setFiltered] = useState(favorites);
@@ -44,6 +44,10 @@ function FavoritesSideBar() {
       );
     });
   }, [favorites, searchText, selectedType]);
+
+  if (isFavoritesLoading) {
+    return <div className="text-base text-slate-400">loading...</div>;
+  }
 
   return (
     <>

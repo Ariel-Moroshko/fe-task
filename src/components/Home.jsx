@@ -1,5 +1,5 @@
 import FavoritesSideBar from "./FavoritesSideBar";
-import { Outlet } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 import pokemonLogo from "../assets/pokemon.png";
 import pokeBall from "../assets/poke_ball.svg";
 import { MobileSheet } from "./MobileSheet";
@@ -20,10 +20,12 @@ function Home() {
             alt="pokemon logo"
             className=""
           />
-          <div className="flex items-center justify-center gap-2">
-            <img src={pokeBall} alt="poke ball" className="h-12 w-12" />
-            <div>Pokedex</div>
-          </div>
+          <Link to="/">
+            <div className="flex items-center justify-center gap-2">
+              <img src={pokeBall} alt="poke ball" className="h-12 w-12" />
+              <div>Pokedex</div>
+            </div>
+          </Link>
         </div>
         <Outlet />
       </div>
