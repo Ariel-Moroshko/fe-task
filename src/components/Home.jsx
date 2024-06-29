@@ -29,7 +29,6 @@ function Home() {
         </div>
         <Outlet />
       </div>
-      {/* Add the main app content here - side panel, main view (list vs details) and header */}
     </div>
   );
 }

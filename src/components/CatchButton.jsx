@@ -27,7 +27,7 @@ function CatchButton({ pokemon, isDisabled }) {
           background: "#0f172a",
         },
         classNames: {
-          toast: "bg-blue-400",
+          toast: "group-[.toaster]:border-slate-800",
           title: "text-slate-100",
           cancelButton: "group-[.toast]:bg-slate-950",
         },

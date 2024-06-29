@@ -1,7 +1,10 @@
 export const POKEMONS_PER_PAGE = 20;
 
+/**
+ * Fetches a list of Pokemon from the API based on the specified page number.
+ */
 export async function getPokemons(page) {
-  // Fetch the list of pokemons from the API
+  // Calculate the offset based on the page number and Pokemon per page
   const response = await fetch(
     `https://pokeapi.co/api/v2/pokemon/?offset=${(page - 1) * POKEMONS_PER_PAGE}&limit=${POKEMONS_PER_PAGE}`,
   );
@@ -13,6 +16,10 @@ export async function getPokemons(page) {
   return response.json();
 }
 
+/**
+ * Extracts relevant details from the raw Pokemon data:
+ * id, name, relevant sprites, types, weight, height, and abilities.
+ */
 function extractDetailsFromPokemonData(data) {
   return {
     id: data.id,
@@ -27,9 +34,10 @@ function extractDetailsFromPokemonData(data) {
   };
 }
 
+/**
+ * Fetches detailed information about a Pokemon using its URL.
+ */
 export async function getPokemonDetailsByURL(url) {
-  // Fetch the pokemon details from according to the url given in the list of pokemons
-  // Transform the data to only include to include only the id, name, relevant sprites, types, weight, height, and abilities.
   const response = await fetch(url);
   if (!response.ok) {
     throw new Error(
@@ -40,6 +48,9 @@ export async function getPokemonDetailsByURL(url) {
   return extractDetailsFromPokemonData(data);
 }
 
+/**
+ * Fetches detailed information about a Pokemon using its name.
+ */
 export async function getPokemonDetailsByName(name) {
   const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${name}`);
   if (!response.ok) {

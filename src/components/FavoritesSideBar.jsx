@@ -51,7 +51,6 @@ function FavoritesSideBar() {
 
   return (
     <>
-      {/* Add the side bar content. Use the PokemonCard component to show each Pokemon in the favorites list */}
       <h2 className="font-bold">
         {favorites.length > 0 && favorites.length} Caught Pokemons
       </h2>
