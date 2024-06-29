@@ -1,17 +1,21 @@
+import useCatchAttemptsContext from "@/hooks/useCatchAttemptsContext";
 import useFavoritesContext from "@/hooks/useFavoritesContext";
-import { addFavorite } from "@/services/favorites.service";
+import { addFavorite, recordCatchAttempt } from "@/services/favorites.service";
 import { LoaderCircle } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
 import { twMerge } from "tailwind-merge";
 
-function CatchButton({ pokemon }) {
+function CatchButton({ pokemon, isDisabled }) {
   const { favorites, setFavorites } = useFavoritesContext();
+  const { addCatchAttempt } = useCatchAttemptsContext();
   const [isPending, setIsPending] = useState(false);
 
   const handleCatchClick = async () => {
     setIsPending(true);
     const result = await addFavorite(pokemon);
+    await recordCatchAttempt(pokemon.name);
+    addCatchAttempt(pokemon.name);
     if (result) {
       setFavorites([...favorites, pokemon]);
     } else {
@@ -36,10 +40,10 @@ function CatchButton({ pokemon }) {
     <div className="group relative mt-8">
       <button
         onClick={() => handleCatchClick()}
-        disabled={isPending}
+        disabled={isPending || isDisabled}
         className={twMerge(
           "group/catch relative inline-flex items-center justify-center overflow-hidden rounded-md p-0.5 font-bold",
-          isPending && "opacity-40",
+          (isPending || isDisabled) && "opacity-40",
         )}
       >
         <span className="absolute h-full w-full bg-gradient-to-br from-[#eacd57] via-[#ff1c1c] to-[#f50bca] transition-all duration-500 ease-out group-hover/catch:opacity-100"></span>

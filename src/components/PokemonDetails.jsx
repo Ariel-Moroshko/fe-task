@@ -6,15 +6,20 @@ import { ArrowLeft, CircleCheck } from "lucide-react";
 import { twMerge } from "tailwind-merge";
 import cardBackground from "../assets/card_background.svg";
 import AnimatedPokemonImage from "./AnimatedPokemonImage";
+import useCatchAttemptsContext from "@/hooks/useCatchAttemptsContext";
 
 function PokemonDetails() {
   const { favorites, isFavoritesLoading } = useFavoritesContext();
+  const { MAX_CATCH_ATTEMPTS, catchAttempts, isCatchAttemptsLoading } =
+    useCatchAttemptsContext();
   const { name: pokemonName } = useParams();
   const { state } = useLocation();
   const pokemon = usePokemon(pokemonName);
   const previousPageVisited = state?.page ?? 1;
+  const catchAttemptsLeft =
+    MAX_CATCH_ATTEMPTS - (catchAttempts.get(pokemonName) ?? 0);
 
-  if (pokemon.isPending || isFavoritesLoading) {
+  if (pokemon.isPending || isFavoritesLoading || isCatchAttemptsLoading) {
     return <div className="flex flex-1 justify-center p-4">loading...</div>;
   }
   const { id, name, sprites, types, weight, height, abilities } = pokemon.data;
@@ -80,7 +85,22 @@ function PokemonDetails() {
             ))}
           </div>
         </div>
-        {!isCaught && <CatchButton pokemon={pokemon.data} />}
+        {!isCaught && (
+          <div className="flex flex-col items-center gap-2">
+            <CatchButton
+              pokemon={pokemon.data}
+              isDisabled={catchAttemptsLeft === 0}
+            />
+            <div
+              className={twMerge(
+                `text-sm font-bold text-blue-200`,
+                catchAttemptsLeft === 0 && "text-slate-500",
+              )}
+            >
+              {catchAttemptsLeft} attempt{catchAttemptsLeft !== 1 && "s"} left
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

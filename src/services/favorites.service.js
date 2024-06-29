@@ -11,7 +11,7 @@ export async function addFavorite(pokemon) {
   // Add the pokemon to the favorites list
   return new Promise((resolve) => {
     setTimeout(async () => {
-      if (Math.random() < 0.4) {
+      if (Math.random() < 0.3) {
         const favorites = await getFavorites();
         localStorage.setItem(
           "favorites",
@@ -37,4 +37,33 @@ export async function removeFavorite(pokemonName) {
     (pokemon) => pokemon.name !== pokemonName,
   );
   localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
+}
+
+export async function getCatchAttempts() {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      const json = localStorage.getItem("catchAttempts");
+      if (!json) {
+        resolve(new Map());
+      } else {
+        const obj = JSON.parse(json);
+        resolve(new Map(Object.entries(obj)));
+      }
+    }, 500);
+  });
+}
+
+export async function recordCatchAttempt(pokemon) {
+  const catchAttempts = await getCatchAttempts();
+  const currentAttempts = catchAttempts.get(pokemon) ?? 0;
+  catchAttempts.set(pokemon, currentAttempts + 1);
+  const obj = Object.fromEntries(catchAttempts);
+  localStorage.setItem("catchAttempts", JSON.stringify(obj));
+}
+
+export async function resetCatchAttemptsForPokemon(pokemon) {
+  const catchAttempts = await getCatchAttempts();
+  catchAttempts.delete(pokemon);
+  const obj = Object.fromEntries(catchAttempts);
+  localStorage.setItem("catchAttempts", JSON.stringify(obj));
 }

@@ -1,10 +1,13 @@
+import CatchAttemptsContextProvider from "./CatchAttemptsContextProvider";
 import FavoritesContextProvider from "./FavoritesContextProvider";
 import MobileSheetContextProvider from "./MobileSheetContext";
 
 function ContextProviders({ children }) {
   return (
     <FavoritesContextProvider>
-      <MobileSheetContextProvider>{children}</MobileSheetContextProvider>
+      <CatchAttemptsContextProvider>
+        <MobileSheetContextProvider>{children}</MobileSheetContextProvider>
+      </CatchAttemptsContextProvider>
     </FavoritesContextProvider>
   );
 }

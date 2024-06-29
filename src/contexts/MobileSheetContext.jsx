@@ -1,4 +1,3 @@
-import { getFavorites } from "@/services/favorites.service";
 import { createContext, useState } from "react";
 
 export const mobileSheetContext = createContext(null);

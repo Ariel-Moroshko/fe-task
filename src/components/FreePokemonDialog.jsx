@@ -9,8 +9,12 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
+import useCatchAttemptsContext from "@/hooks/useCatchAttemptsContext";
 import useFavoritesContext from "@/hooks/useFavoritesContext";
-import { removeFavorite } from "@/services/favorites.service";
+import {
+  removeFavorite,
+  resetCatchAttemptsForPokemon,
+} from "@/services/favorites.service";
 import { LoaderCircle, X } from "lucide-react";
 import { useState } from "react";
 import { twMerge } from "tailwind-merge";
@@ -19,15 +23,19 @@ export function FreePokemonDialog({ pokemonName }) {
   const [open, setOpen] = useState(false);
   const [isPending, setIsPending] = useState(false);
   const { favorites, setFavorites } = useFavoritesContext();
+  const { resetCatchAttempts } = useCatchAttemptsContext();
 
   const handleFreePokemon = async (e) => {
     e.preventDefault();
     setIsPending(true);
     await removeFavorite(pokemonName);
+    await resetCatchAttemptsForPokemon(pokemonName);
+
     const updatedFavorites = favorites.filter(
       (pokemon) => pokemon.name !== pokemonName,
     );
     setFavorites(updatedFavorites);
+    resetCatchAttempts(pokemonName);
     setIsPending(false);
   };
 
