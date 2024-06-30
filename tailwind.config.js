@@ -17,6 +17,9 @@ module.exports = {
       },
     },
     extend: {
+      backgroundImage: {
+        card: "url('assets/card_background.svg')",
+      },
       keyframes: {
         "accordion-down": {
           from: { height: "0" },

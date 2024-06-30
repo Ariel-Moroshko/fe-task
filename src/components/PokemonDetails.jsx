@@ -4,7 +4,6 @@ import CatchButton from "./CatchButton";
 import useFavoritesContext from "@/hooks/useFavoritesContext";
 import { ArrowLeft, CircleCheck } from "lucide-react";
 import { twMerge } from "tailwind-merge";
-import cardBackground from "../assets/card_background.svg";
 import AnimatedPokemonImage from "./AnimatedPokemonImage";
 import useCatchAttemptsContext from "@/hooks/useCatchAttemptsContext";
 
@@ -44,9 +43,8 @@ function PokemonDetails() {
         </Link>
       </div>
       <div
-        style={{ "--card-bg-image-url": `url(${cardBackground})` }}
         className={twMerge(
-          `group relative mx-auto mt-4 flex max-w-xl flex-col items-center justify-center gap-4 rounded-xl border-2 border-slate-800 bg-[image:var(--card-bg-image-url)] bg-cover px-4 py-8`,
+          `bg-card group relative mx-auto mt-4 flex max-w-xl flex-col items-center justify-center gap-4 rounded-xl border-2 border-slate-800 bg-cover px-4 py-8`,
           isCaught &&
             "border-emerald-600 shadow-[0_20px_50px_rgba(0,_98,_90,_0.7)]",
         )}

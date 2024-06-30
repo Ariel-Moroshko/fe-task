@@ -1,5 +1,4 @@
 import { POKEMONS_PER_PAGE } from "@/services/pokemon.service";
-import cardBackground from "../assets/card_background.svg";
 
 function SkeletonCards() {
   return (
@@ -7,8 +6,7 @@ function SkeletonCards() {
       {Array.from({ length: POKEMONS_PER_PAGE }).map((_, i) => (
         <div
           key={i}
-          style={{ "--card-bg-image-url": `url(${cardBackground})` }}
-          className="group flex flex-col items-center justify-center gap-6 rounded-xl border-2 border-slate-800 bg-[image:var(--card-bg-image-url)] bg-cover px-2 py-6 transition-all duration-300 ease-in-out hover:border-slate-500"
+          className="bg-card group flex flex-col items-center justify-center gap-6 rounded-xl border-2 border-slate-800 bg-cover px-2 py-6 transition-all duration-300 ease-in-out hover:border-slate-500"
         >
           <div className="h-4 w-4 animate-pulse rounded-full bg-slate-700"></div>
           <div className="h-32">

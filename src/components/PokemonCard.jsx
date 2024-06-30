@@ -1,5 +1,4 @@
 import { twMerge } from "tailwind-merge";
-import cardBackground from "../assets/card_background.svg";
 import useFavoritesContext from "@/hooks/useFavoritesContext";
 import useCatchAttemptsContext from "@/hooks/useCatchAttemptsContext";
 
@@ -12,9 +11,8 @@ function PokemonCard({ pokemon, variant }) {
   const isCaught = favorites.some((p) => p.name === pokemon.name);
   return (
     <div
-      style={{ "--card-bg-image-url": `url(${cardBackground})` }}
       className={twMerge(
-        `group flex flex-col items-center justify-center gap-6 rounded-xl border-2 border-slate-800 bg-[image:var(--card-bg-image-url)] bg-cover px-2 py-6 transition-all duration-300 ease-in-out hover:border-slate-500`,
+        `bg-card group flex flex-col items-center justify-center gap-6 rounded-xl border-2 border-slate-800 bg-cover px-2 py-6 transition-all duration-300 ease-in-out hover:border-slate-500`,
         variant === "small" && "w-52",
       )}
     >
