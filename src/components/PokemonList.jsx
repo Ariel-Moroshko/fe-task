@@ -31,9 +31,7 @@ function PokemonList() {
               <div>No attempts left</div>
             </div>
           </div>
-          <Pagination
-            hasNextPage={pokemonsList && pokemonsList.next === null}
-          />
+          <Pagination hasNextPage={!isPending && data.next !== null} />
         </div>
 
         <div className="grid h-fit w-full max-w-screen-2xl grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">

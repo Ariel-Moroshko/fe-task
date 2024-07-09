@@ -19,7 +19,7 @@ function Pagination({ hasNextPage }) {
       <Button
         onClick={() => setSearchParams({ page: page + 1 })}
         className="flex min-w-32 items-center gap-2 bg-slate-800 hover:bg-slate-600"
-        disabled={hasNextPage}
+        disabled={!hasNextPage}
       >
         Next
         <ChevronRight size={18} />
