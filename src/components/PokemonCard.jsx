@@ -1,18 +1,24 @@
 import { twMerge } from "tailwind-merge";
 import useFavoritesContext from "@/hooks/useFavoritesContext";
 import useCatchAttemptsContext from "@/hooks/useCatchAttemptsContext";
+import usePokemon from "@/hooks/usePokemon";
+import SkeletonCard from "./SkeletonCard";
 
-function PokemonCard({ pokemon, variant }) {
+function PokemonCard({ pokemonName, variant }) {
   const { favorites, isFavoritesLoading } = useFavoritesContext();
   const { getPokemonCatchAttemptsLeft } = useCatchAttemptsContext();
-  const catchAttemptsLeft = getPokemonCatchAttemptsLeft(pokemon.name);
+  const isCaught = favorites.some((p) => p.name === pokemonName);
+  const { data, isPending } = usePokemon(pokemonName);
 
-  const { id, name, sprites } = pokemon;
-  const isCaught = favorites.some((p) => p.name === pokemon.name);
+  if (isPending) {
+    return <SkeletonCard pokemonName={pokemonName} />;
+  }
+
+  const { id, sprites } = data;
   return (
     <div
       className={twMerge(
-        `bg-card group flex flex-col items-center justify-center gap-6 rounded-xl border-2 border-slate-800 bg-cover px-2 py-6 transition-all duration-300 ease-in-out hover:border-slate-500`,
+        `group flex flex-col items-center justify-center gap-6 rounded-xl border-2 border-slate-800 bg-card bg-cover px-2 py-6 transition-all duration-300 ease-in-out hover:border-slate-500`,
         variant === "small" && "w-52",
       )}
     >
@@ -23,7 +29,7 @@ function PokemonCard({ pokemon, variant }) {
             !isFavoritesLoading && isCaught && "bg-emerald-400",
             !isFavoritesLoading &&
               !isCaught &&
-              catchAttemptsLeft > 0 &&
+              getPokemonCatchAttemptsLeft(pokemonName) > 0 &&
               "bg-blue-400",
           )}
         ></div>
@@ -56,7 +62,7 @@ function PokemonCard({ pokemon, variant }) {
           variant === "small" && "h-12 text-base",
         )}
       >
-        {name}
+        {pokemonName}
       </div>
       <div
         className={twMerge(

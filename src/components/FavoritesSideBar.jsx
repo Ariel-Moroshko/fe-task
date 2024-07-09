@@ -95,7 +95,7 @@ function FavoritesSideBar() {
             )}
           >
             <Link to={pokemon.name} onClick={() => setOpen(false)}>
-              <PokemonCard pokemon={pokemon} variant="small" />
+              <PokemonCard pokemonName={pokemon.name} variant="small" />
             </Link>
             <FreePokemonDialog pokemonName={pokemon.name} />
           </div>
